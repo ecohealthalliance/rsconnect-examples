@@ -6,6 +6,7 @@ output: html_document
 params:
   recipients:
     - ross@ecohealthalliance.org
+    - young@ecohealthalliance.org
     - noam.ross@gmail.com
 ---
 

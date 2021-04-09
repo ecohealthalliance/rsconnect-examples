@@ -3,9 +3,11 @@ title: "Email Document"
 output: blastula::blastula_email
 ---
 
-This is a test email created from an R Markdown document.  You can see how it
+This is a test email created from an R Markdown document. You can see how it
 is done at <https://connect.eha.io/blastula-example/>, 
 <https://connect.eha.io/connect/#/apps/40/>, or <https://github.com/ecohealthalliance/rsconnect-examples/blob/master/test-blastula.Rmd>
+
+This was rendered at **`r Sys.time()`**.
 
 Here's a table
 
