@@ -1,0 +1,52 @@
+---
+title: "Testing General Blastula Emails"
+author: "Noam Ross"
+date: "4/9/2021"
+output: html_document
+params:
+  recipients:
+    - ross@ecohealthalliance.org
+    - noam.ross@gmail.com
+---
+
+This R Markdown document tests sending blastula emails to arbitrary users, with and without EHA RStudio Connect credentials. It can be used to send scheduled messages, for instance.
+
+```{r setup, include=FALSE}
+library(blastula)
+library(rmarkdown)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+We store the *app password* for the email account sending the variables as an environment variable on RStudio Connect as `"SMTP_PASSWORD"`, and use it to make credentials:
+
+```{r}
+email_creds <- creds_envvar(
+  user = "rsconnect@ecohealthalliance.org",  # Account that has the app pwd
+  #  pass_envvar = "SMTP_PASSWORD",           # Commenting out to show this is the default, not needed
+  host = "smtp.gmail.com",                   # Our email provider, do not change
+  port = 587,                                # The appropriate port, do not change
+  use_ssl = TRUE                           # SSL required or emails don't send, do not change
+)
+```
+
+Now I create an email message from another R Markdown file.
+
+```{r}
+email_body <- render_email("blastula-email.Rmd")
+```
+
+We send this to the recipients in the Rmd header, who are:
+
+```{r results='asis'}
+cat(paste('-', params$recipients), sep = '\n')
+```
+
+```{r}
+smtp_send(
+  email_body,
+  from = "rsconnect@ecohealthalliance.org",    # Should match the email used to make the credentials
+  to = params$recipients,                  # Recipients set in the document header
+  subject = "A test email from RStudio Connect",
+  credentials = email_creds        # Credentials we made using the env var
+)
+```

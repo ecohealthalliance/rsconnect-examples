@@ -1,0 +1,20 @@
+---
+title: "Email Document"
+output: blastula::blastula_email
+---
+
+This is a test email created from an R Markdown document.  You can see how it
+is done at <https://connect.eha.io/blastula-example/> or <https://connect.eha.io/connect/#/apps/40/>
+
+Here's a table
+
+```{r table}
+knitr::kable(mtcars)
+```
+
+Here's a plot
+
+```{r}
+plot(mtcars$cyl, mtcars$mpg)
+```
+
