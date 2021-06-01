@@ -10,6 +10,8 @@ params:
     - noam.ross@gmail.com
 ---
 
+_For a more elaborate working example, see <https://connect.eha.io/content/37> (EHA-Connect account required)_
+
 This R Markdown document tests sending blastula emails to arbitrary users, with and without EHA RStudio Connect credentials. It can be used to send scheduled messages, for instance.
 
 ```{r setup, include=FALSE}
