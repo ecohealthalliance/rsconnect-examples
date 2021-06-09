@@ -1,0 +1,33 @@
+---
+title: "Dygraph Timeseries example"
+output: html_document
+---
+
+## using dygraph for timeseries
+
+[`dygraphs`](https://rstudio.github.io/dygraphs/index.html) is a library for creating interactive timeseries plots. It uses [`xts`](https://github.com/joshuaulrich/xts) objects to create the plots. `xts` builds off of timeseries classes found in the `zoo` package.
+
+```{r dygraph example, echo=TRUE, message=FALSE, warning=FALSE}
+library(xts)
+library(dygraphs)
+library(magrittr)
+
+## creating a data frame with data and time fields
+df <- data.frame(x = 10*(sin(1:10)+1), date = as.Date(1:10))
+
+# creating xts object x = data, order.by = time
+xtsObj <- xts(x = df$x,order.by =  df$date)
+
+# can label data by naming the object or using the 
+# label argument in the dySeries() function
+names(xtsObj) <- "Some Name"
+
+dygraph(xtsObj, main = "A test plot's title") %>% 
+  dyRangeSelector() %>% #plot also has brush based selection
+  dyOptions(stepPlot = FALSE,
+            drawPoints = TRUE,
+            pointSize = 3, 
+            fillGraph = FALSE,
+            colors = RColorBrewer::brewer.pal(3, "Set1")) 
+
+```
