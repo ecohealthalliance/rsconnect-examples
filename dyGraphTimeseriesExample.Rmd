@@ -5,7 +5,7 @@ output: html_document
 
 ## using dygraph for timeseries
 
-[`dygraphs`](https://rstudio.github.io/dygraphs/index.html) is a library for creating interactive timeseries plots. It uses [`xts`](https://github.com/joshuaulrich/xts) objects to create the plots. `xts` builds off of timeseries classes found in the `zoo` package. Unlike ggplot
+[`dygraphs`](https://rstudio.github.io/dygraphs/index.html) is a library for creating interactive timeseries plots. It uses [`xts`](https://github.com/joshuaulrich/xts) objects to create the plots. `xts` builds off of timeseries classes found in the `zoo` package.
 
 ```{r dygraph example, echo=TRUE, message=FALSE, warning=FALSE}
 library(xts)
@@ -19,7 +19,7 @@ df <- data.frame(x = 10*(sin(1:10)+1), date = as.Date(1:10))
 xtsObj <- xts(x = df$x,order.by =  df$date)
 
 # can label data by naming the object or using the 
-# label argument in the dySeries function
+# label argument in the dySeries() function
 names(xtsObj) <- "Some Name"
 
 dygraph(xtsObj, main = "A test plot's title") %>% 
